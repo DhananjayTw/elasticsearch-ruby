@@ -13,6 +13,7 @@ require 'elasticsearch/dsl/search/filter'
 require 'elasticsearch/dsl/search/aggregation'
 require 'elasticsearch/dsl/search/highlight'
 require 'elasticsearch/dsl/search/sort'
+require 'elasticsearch/dsl/search/collapse'
 require 'elasticsearch/dsl/search/options'
 require 'elasticsearch/dsl/search/suggest'
 

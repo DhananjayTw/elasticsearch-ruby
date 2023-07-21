@@ -164,6 +164,18 @@ module Elasticsearch
             @sort
           end
         end
+        # DSL method for building the `collapse` part of a search definition
+        #
+        # @return [self, Collapse]
+        #
+        def collapse(*args, &block)
+          if !args.empty? || block
+            @collapse = Collapse.new(*args, &block)
+            self
+          else
+            @collapse
+          end
+        end
 
         # Set the sort part of a search definition
         #
@@ -258,6 +270,7 @@ module Elasticsearch
           hash.update(from: @from) if @from
           hash.update(suggest: @suggest.reduce({}) { |sum,item| sum.update item.last.to_hash }) if @suggest
           hash.update(highlight: @highlight.to_hash) if @highlight
+          hash.update(collapse: @collapse.to_hash) if @collapse
           hash.update(@options) unless @options.empty?
           hash
         end
